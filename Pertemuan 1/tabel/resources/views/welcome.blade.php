@@ -44,7 +44,7 @@ th{
   <tr>
     <td>Centro comercial Moctezuma</td>
     <td>Basis Data Lanjut</td>
-    <td>Ruang Dosen 1</td>
+    <td>Ruang Dosen 2</td>
   </tr>
   <tr>
     <td>Ernst Handel</td>
