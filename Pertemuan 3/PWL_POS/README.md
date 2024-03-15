@@ -1,15 +1,15 @@
-![Praktikum 2 3 (2)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/d40d3695-e79c-469c-aa45-3764f9b25c8c)## Praktikum Jobshet 4
+## Praktikum Jobshet 4
 
 Praktikum 1
-Hasil Praktikum No 1
+1. Hasil Praktikum No 1
 ![Praktikum 1 (1)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/8aa9d845-4fe9-4e0d-b52e-992c80a4f3bf)
 
 Praktikum 2.1
-Hasil Praktikum No 3
+3. Hasil Praktikum No 3
 ![Praktikum 2 1 (3)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/94e579a6-6808-4f91-971d-2596881cc09c)
-Hasil Praktikum No 5
+5. Hasil Praktikum No 5
 ![Praktikum 2 1 (5)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/b75d940e-3a12-4dd1-83a5-71613042d5e1)
-Hasil Praktikum No 7
+7. Hasil Praktikum No 7
 ![Praktikum 2 1 (7)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/667322da-9efe-4d5b-b21b-f029c9f9bcc1)
 Hasil Praktikum No 9
 ![Praktikum 2 1 (9)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/8cbcc266-4e60-4509-9d7c-149fd34c6cc6)
