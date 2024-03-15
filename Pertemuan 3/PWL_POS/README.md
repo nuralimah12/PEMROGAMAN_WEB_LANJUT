@@ -1,66 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![Praktikum 2 3 (2)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/d40d3695-e79c-469c-aa45-3764f9b25c8c)## Praktikum Jobshet 4
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Praktikum 1
+Hasil Praktikum No 1
+![Praktikum 1 (1)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/8aa9d845-4fe9-4e0d-b52e-992c80a4f3bf)
 
-## About Laravel
+Praktikum 2.1
+Hasil Praktikum No 3
+![Praktikum 2 1 (3)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/94e579a6-6808-4f91-971d-2596881cc09c)
+Hasil Praktikum No 5
+![Praktikum 2 1 (5)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/b75d940e-3a12-4dd1-83a5-71613042d5e1)
+Hasil Praktikum No 7
+![Praktikum 2 1 (7)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/667322da-9efe-4d5b-b21b-f029c9f9bcc1)
+Hasil Praktikum No 9
+![Praktikum 2 1 (9)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/8cbcc266-4e60-4509-9d7c-149fd34c6cc6)
+Hasil Praktikum No 11
+![Praktikum 2 1 (11)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/595858f6-0e56-4c57-bb25-ae8948f96222)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Praktikum 2.2
+Hasil Praktikum No 2
+![Praktikum 2 2 (2)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/3e96e3a7-1fb6-4750-b5e2-ca03f61e3f81)
+Hasil Praktikum No 4
+![Praktikum 2 2 (4)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/b10d19b9-c246-45bb-a68a-bafc39603444)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Praktikum 2.3
+Hasil Praktikum No 2
+![Praktikum 2 3 (2)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/0a90387f-09b3-428c-ba5c-30b899f3665e)
+Hasil Praktikum No 3
+![Praktikum 2 3 (3)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/2216e107-d8a3-49e9-8156-24f7a0ae477f)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Praktikum 2.4
+Hasil Praktikum No 3
+![Praktikum 2 4 (3)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/42d3fbae-3934-43b4-8084-1172ee720ee1)
+Hasil Praktikum No 5
+![Praktikum 2 4 (5) - 1](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/5321e00a-17b6-4ba5-8bf5-69d882d18710)
+![Praktikum 2 4 (5) - 2](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/485d1146-34be-4794-947d-f3f92e45b027)
+Hasil Praktikum No 7
+![Praktikum 2 4 (7)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/7103a339-6035-433b-988d-3c6e6070c680)
+Hasil Praktikum No 9
+![Praktikum 2 4 (9)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/9a3a0122-0deb-4ebd-ad18-bcd4150ffed8)
+![Praktikum 2 4 (9) - 2](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/84c6689e-3ba9-499e-abbf-cdf62c904d88)
+Hasil Praktikum No 11
+![Praktikum 2 4 (11)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/b05d043e-9a59-41ec-a773-f83cb8496595)
+![Praktikum 2 4 (11) - 1](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/149fdd11-0dbf-4671-bc34-500373353717)
 
-## Learning Laravel
+Praktikum 2.5
+Hasil Praktikum No 2
+![Praktikum 2 5 (2)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/368598e9-9034-43ca-ac99-9bddfe7876dd)
+Hasil Praktikum No 4
+![Praktikum 2 5 (4)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/33da4b6f-5e2b-4733-8836-88d8e2432f28)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Praktikum 2.6
+Hasil Praktikum No 3
+![Praktikum 2 6 (3)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/d2df5f55-9867-4796-9da6-aed5eb44b3d6)
+Hasil Praktikum No 7
+![Praktikum 2 6 (7)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/4419d7e5-9a03-4496-b57f-a0d75e2491e4)
+Hasil Praktikum No 14
+![Praktikum 2 6 (14)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/a30a976e-114f-4f46-b5d4-212038761568)
+Hasil Praktikum No 17
+![Praktikum 2 6 (17) - 1](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/c015cfb7-1cf4-4a55-82d8-a327b5c6df13)
+![Praktikum 2 6 (17) - 2](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/84176839-a68b-4c6f-b2fd-5d33cb1c26ee)
+![Praktikum 2 6 (17)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/a206935f-1c3f-43c7-be83-e0ab1a25812a)
+Hasil Praktikum No 20
+![Praktikum 2 6 (20)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/b7cc1628-1001-4db9-85fe-69cca7db3202)
+![Praktikum 2 6 (20) -1](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/6b83a6ee-18c5-4933-86f9-c252011df70d)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Praktikum 2.7
+Hasil Praktikum No 6
+![Praktikum 2 7 (6)](https://github.com/nuralimah12/Pemrogaman_Web_Lanjut/assets/91867691/0598e032-06f4-4280-9bdd-590ff82a6ebe)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
