@@ -3,6 +3,7 @@
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,20 +24,31 @@ Route::get('/', function () {
 
 Route::get('/level', [LevelController::class, 'index']);
 
-Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+Route::get('/kategori', [KategoriController::class, 'index']);
 
-Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+Route::get('/user', [UserController::class, 'index']);
 
-Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store');
+Route::get('/user/tambah', [UserController::class, 'tambah']);
 
-Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan']);
 
-Route::put('/kategori/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+Route::get('/user/ubah/{id}', [UserController::class, 'ubah']);
 
-Route::delete('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name('kategori.delete');
+Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
 
-Route::post('/user', [KategoriController::class, 'index'])->name('user.index');
+Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
 
-Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::get('/kategori', [KategoriController::class, 'index']);
 
-Route::post('/user', [UserController::class, 'store'])->name('user.store');
+Route::get('/kategori/create', [KategoriController::class, 'create']);
+
+Route::post('/kategori', [KategoriController::class, 'store']);
+
+Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit']);
+
+Route::put('/kategori/update/{id}', [KategoriController::class, 'update']);
+
+Route::delete('/kategori/delete/{id}', [KategoriController::class, 'delete']);
+
+Route::get('/', [WelcomeController::class, 'index']);
+
