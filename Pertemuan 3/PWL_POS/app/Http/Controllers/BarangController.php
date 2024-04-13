@@ -37,14 +37,14 @@ class BarangController extends Controller
 
     public function list(Request $request)
     {
-        $goods = BarangModel::with('kategori');
+        $barangs = BarangModel::with('kategori');
 
         if($request->kategori_id){
-            $goods->where('kategori_id', $request->kategori_id);
+            $barangs->where('kategori_id', $request->kategori_id);
         }
 
 
-        return DataTables::of($goods)->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
+        return DataTables::of($barangs)->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
         ->addColumn('aksi', function ($barang) { // menambahkan kolom aksi
         $btn = '<a href="'.url('/barang/' . $barang->barang_id).'" class="btn btn-info btn-sm">Detail</a> ';
         $btn .= '<a href="'.url('/barang/' . $barang->barang_id . '/edit').'" 

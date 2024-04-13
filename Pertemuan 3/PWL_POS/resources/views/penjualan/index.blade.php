@@ -4,7 +4,8 @@
   <div class="card-header">
     <h3 class="card-title">{{ $page->title }}</h3>
     <div class="card-tools">
-      <a class="btn btn-sm btn-primary mt-1" href="{{ url('barang/create') }}">Tambah</a>
+      <a class="btn btn-sm btn-primary mt-1" href="{{ url('penjualan/create') 
+}}">Tambah</a>
     </div>
   </div>
   <div class="card-body">
@@ -17,28 +18,29 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group row">
-          <label class="col-1 control-label col-form-label">Filter :</label>
+          <label class="col-1 control-label col-form-label">Filter User :</label>
           <div class="col-3">
-            <select name="kategori_id" required id="kategori_id" class="form-control">
+            <select name="user_id" required id="user_id" class="form-control">
               <option value="">- Semua -</option>
-              @foreach ($kategori as $item)
-              <option value="{{$item->kategori_id}}">{{$item->kategori_nama}}</option>
+              @foreach ($user as $item)
+              <option value="{{$item->user_id}}">{{$item->nama}}</option>
               @endforeach
             </select>
-            <small class="form-text text-muted">Kategori Barang</small>
+            <small class="form-text text-muted">User</small>
           </div>
         </div>
       </div>
     </div>
-    <table class="table table-bordered table-striped table-hover table-sm" id="table_barang">
+
+    <table class="table table-bordered table-striped table-hover table-sm" id="table_penjualan">
       <thead>
         <tr>
           <th>ID</th>
-          <th>Kategori Barang</th>
-          <th>Kode Barang</th>
-          <th>Nama Barang</th>
-          <th>Harga Beli</th>
-          <th>Harga Jual</th>
+          <th>Nama User</th>
+          <th>Nama Pembeli</th>
+          <th>Kode Penjualan</th>
+          <th>Tanggal Penjualan</th>
+          <th>Total Penjualan (Rp)</th>
           <th>Aksi</th>
         </tr>
       </thead>
@@ -51,14 +53,14 @@
 @push('js')
 <script>
   $(document).ready(function() {
-    var dataBarang = $('#table_barang').DataTable({
+    var dataPenjualan = $('#table_penjualan').DataTable({
     serverSide: true, // serverSide: true, jika ingin menggunakan server side processing
     ajax: {
-    "url": "{{ url('barang/list') }}",
+    "url": "{{ url('penjualan/list') }}",
     "dataType": "json",
-    "type": "POST",
+    "type": "GET",
     "data": function(d) {
-      d.kategori_id = $('#kategori_id').val();
+      d.user_id = $('#user_id').val();
     }
     },
     columns: [
@@ -68,27 +70,28 @@
     orderable: false,
     searchable: false
     },{
-    data: "kategori.kategori_nama", 
+    data: "nama", 
     className: "",
     orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
     searchable: true // searchable: true, jika ingin kolom ini bisa dicari
     },{
-    data: "barang_kode", 
+    data: "pembeli", 
     className: "",
     orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
     searchable: true // searchable: true, jika ingin kolom ini bisa dicari
     },{
-    data: "barang_nama", 
-    className: "",
-    orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
-    searchable: true // searchable: true, jika ingin kolom ini bisa dicari
-    },{
-    data: "harga_beli", 
+    data: "penjualan_kode", 
     className: "",
     orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
     searchable: false // searchable: true, jika ingin kolom ini bisa dicari
     },{
-    data: "harga_jual", 
+    data: "penjualan_tanggal", 
+    className: "",
+    orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
+    searchable: false // searchable: true, jika ingin kolom ini bisa dicari
+    },
+    {
+  data: "total", 
     className: "",
     orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
     searchable: false // searchable: true, jika ingin kolom ini bisa dicari
@@ -98,13 +101,13 @@
     className: "",
     orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
     searchable: false // searchable: true, jika ingin kolom ini bisa dicari
-    }
+    },
     ],
     });
 
-    $('#kategori_id').on('change', function() {
-      console.log('first')
-      dataBarang.ajax.reload()
+
+    $('#user_id').on('change', function() {
+      dataPenjualan.ajax.reload();
     });
 });
 </script>

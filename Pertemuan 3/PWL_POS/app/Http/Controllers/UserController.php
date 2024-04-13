@@ -37,7 +37,7 @@ class UserController extends Controller
         return DataTables::of($users) 
         ->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex) 
             ->addColumn('aksi', function ($user) {  // menambahkan kolom aksi 
-                $btn  = '<a href="'.url('/user/' . $user->user_id).'" class="btn btn info btn-sm">Detail</a> '; 
+                $btn  = '<a href="'.url('/user/' . $user->user_id).'" class="btn btn-info btn-sm">Detail</a> '; 
                 $btn .= '<a href="'.url('/user/' . $user->user_id . '/edit').'"class="btn btn-warning btn-sm">Edit</a> '; 
                 $btn .= '<form class="d-inline-block" method="POST" action="'. url('/user/'.$user->user_id).'">' 
                         . csrf_field() . method_field('DELETE') .  
@@ -132,8 +132,6 @@ class UserController extends Controller
 
     public function update(Request $request, string $id) {
         $request->validate([
-            // username harus diisi, berupa string, minimal 3 karakter,
-            // dan bernilai unik di tabel m_user kolom username kecuali untuk user dengan id yang sedang diedit
             'username' => 'required|string|min:3|unique:m_user,username,' . $id . ',user_id',
             'nama'     => 'required|string|max:100', // nama harus diisi, berupa string, dan maksimal 100 karakter
             'password' => 'nullable|min:5',          // password bisa diisi (minimal 5 karakter) dan bisa tidak diisi

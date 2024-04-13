@@ -1,33 +1,48 @@
-@extends('layouts.app')
-
-@section('subtitle', 'Kategori')
-@section('content_header_title', 'Home')
-@section('content_header_subtitle', 'Create')
+@extends('layouts.template')
 
 @section('content')
-<div class="container-fluid">
-  <div class="card card-primary">
-    <div class="card-header">
-      <h3 class="card-title">Buat kategori baru</h3>
+    <div class="card card-outline card-primary">
+        <div class="card-header">
+            <h3 class="card-title">{{ $page->title }}</h3>
+            <div class="card-tools"></div>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url('kategori') }}" class="form-horizontal">
+                @csrf
+                <div class="form-group row">
+                    <label class="col-1 control-label col-form-label">Level Kode</label>
+                    <div class="col-11">
+                        <input type="text" class="form-control" id="kategori_kode" name="kategori_kode"
+                            value="{{ old('kategori_kode') }}" required>
+                        @error('kategori_kode')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-1 control-label col-form-label">Level Nama</label>
+                    <div class="col-11">
+                        <input type="text" class="form-control" id="kategori_nama" name="kategori_nama"
+                            value="{{ old('kategori_nama') }}" required>
+                        @error('kategori_nama')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-1 control-label col-form-label"></label>
+                    <div class="col-11">
+                        <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                        <a class="btn btn-sm btn-default ml-1" href="{{ url('kategori') }}">Kembali</a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <form action="../kategori" method="post">
-      <div class="card-body">
-        <div class="form-group">
-          <label for="kodeKategori">Kode Kategori</label>
-          <input type="text" name="kodeKategori" id="kodeKategori" placeholder="contoh: MKN"
-            class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="kodeKategori">Nama Kategori</label>
-          <input type="text" name="namaKategori" id="namaKategori" placeholder="Nama" class="form-control">
-        </div>
-
-        <div class=" card-footer">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
 @endsection
+
+@push('css')
+@endpush
+
+@push('js')
+@endpush

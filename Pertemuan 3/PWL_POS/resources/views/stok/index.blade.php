@@ -4,7 +4,7 @@
   <div class="card-header">
     <h3 class="card-title">{{ $page->title }}</h3>
     <div class="card-tools">
-      <a class="btn btn-sm btn-primary mt-1" href="{{ url('barang/create') }}">Tambah</a>
+      <a class="btn btn-sm btn-primary mt-1" href="{{ url('stok/create') }}">Tambah</a>
     </div>
   </div>
   <div class="card-body">
@@ -19,10 +19,10 @@
         <div class="form-group row">
           <label class="col-1 control-label col-form-label">Filter :</label>
           <div class="col-3">
-            <select name="kategori_id" required id="kategori_id" class="form-control">
+            <select name="barang_id" required id="barang_id" class="form-control">
               <option value="">- Semua -</option>
-              @foreach ($kategori as $item)
-              <option value="{{$item->kategori_id}}">{{$item->kategori_nama}}</option>
+              @foreach ($barang as $item)
+              <option value="{{$item->barang_id}}">{{$item->barang_nama}}</option>
               @endforeach
             </select>
             <small class="form-text text-muted">Kategori Barang</small>
@@ -30,15 +30,14 @@
         </div>
       </div>
     </div>
-    <table class="table table-bordered table-striped table-hover table-sm" id="table_barang">
+    <table class="table table-bordered table-striped table-hover table-sm" id="table_stok">
       <thead>
         <tr>
           <th>ID</th>
-          <th>Kategori Barang</th>
-          <th>Kode Barang</th>
-          <th>Nama Barang</th>
-          <th>Harga Beli</th>
-          <th>Harga Jual</th>
+          <th>Barang ID</th>
+          <th>User ID</th>
+          <th>Stok Tanggal</th>
+          <th>Stok Jumlah</th>
           <th>Aksi</th>
         </tr>
       </thead>
@@ -51,14 +50,14 @@
 @push('js')
 <script>
   $(document).ready(function() {
-    var dataBarang = $('#table_barang').DataTable({
+    var dataStok = $('#table_stok').DataTable({
     serverSide: true, // serverSide: true, jika ingin menggunakan server side processing
     ajax: {
-    "url": "{{ url('barang/list') }}",
+    "url": "{{ url('stok/list') }}",
     "dataType": "json",
     "type": "POST",
     "data": function(d) {
-      d.kategori_id = $('#kategori_id').val();
+      d.stok_id = $('#stok_id').val();
     }
     },
     columns: [
@@ -68,27 +67,22 @@
     orderable: false,
     searchable: false
     },{
-    data: "kategori.kategori_nama", 
+    data: "barang.barang_id", 
     className: "",
     orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
     searchable: true // searchable: true, jika ingin kolom ini bisa dicari
     },{
-    data: "barang_kode", 
+    data: "user.user_id", 
     className: "",
     orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
     searchable: true // searchable: true, jika ingin kolom ini bisa dicari
     },{
-    data: "barang_nama", 
+    data: "stok_tanggal", 
     className: "",
     orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
     searchable: true // searchable: true, jika ingin kolom ini bisa dicari
     },{
-    data: "harga_beli", 
-    className: "",
-    orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
-    searchable: false // searchable: true, jika ingin kolom ini bisa dicari
-    },{
-    data: "harga_jual", 
+    data: "stok_jumlah", 
     className: "",
     orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
     searchable: false // searchable: true, jika ingin kolom ini bisa dicari
@@ -102,9 +96,9 @@
     ],
     });
 
-    $('#kategori_id').on('change', function() {
+    $('#stok_id').on('change', function() {
       console.log('first')
-      dataBarang.ajax.reload()
+      dataStok.ajax.reload()
     });
 });
 </script>
