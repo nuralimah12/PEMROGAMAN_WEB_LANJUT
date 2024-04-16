@@ -42,6 +42,24 @@
           </div> 
         </div> 
         <div class="form-group row"> 
+          <label class="col-1 control-label col-form-label">Status</label> 
+          <div class="col-11"> 
+            <input type="number" class="form-control" id="Status" name="status" value="{{ old('status') }}" required> 
+            @error('nama') 
+              <small class="form-text text-danger">{{ $message }}</small> 
+            @enderror 
+          </div> 
+        </div> 
+        <div class="form-group row"> 
+          <label class="col-1 control-label col-form-label">Profil</label> 
+          <div class="col-11"> 
+            <input type="file" class="form-control" id="profil_image" name="profil_image" value="{{ old('profi_image') }}" required> 
+            @error('nama') 
+              <small class="form-text text-danger">{{ $message }}</small> 
+            @enderror 
+          </div> 
+        </div> 
+        <div class="form-group row"> 
           <label class="col-1 control-label col-form-label">Password</label> 
           <div class="col-11"> 
             <input type="password" class="form-control" id="password" name="password" required> 
