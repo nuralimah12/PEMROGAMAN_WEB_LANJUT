@@ -164,4 +164,22 @@ class UserController extends Controller
             return redirect('/user')->with('error', 'Data user gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
     }
+
+    public function validateUser($id)
+    {
+        // Lakukan validasi user berdasarkan $id yang diterima dari URL
+        $user = UserModel::find($id);
+
+        if (!$user) {
+            // Tampilkan pesan jika user tidak ditemukan
+            return back()->withErrors('User tidak ditemukan.');
+        }
+
+        // Lakukan proses validasi user
+        $user->status = 1; // Misalnya, ubah status user menjadi "divalidasi"
+        $user->save();
+
+        // Redirect ke halaman lain atau tampilkan pesan sukses
+        return redirect('/user')->with('success', 'User berhasil divalidasi.');
+    }
 }

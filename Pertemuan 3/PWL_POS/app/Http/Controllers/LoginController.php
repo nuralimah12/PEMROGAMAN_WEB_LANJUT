@@ -28,7 +28,7 @@ class LoginController extends Controller
             $user = UserModel::where('username',$success['username'])->first();
             if($user->status == 0){
                 return back()->withErrors([
-                    'error' => 'CYEE BELUM DIVALIDASI']);
+                    'error' => 'Akun Belum Divalidasi']);
             }
             $request->session()->regenerate();
  
@@ -36,7 +36,8 @@ class LoginController extends Controller
         }
  
         return back()->withErrors([
-            'username' => 'username tidak terdaftar',
+            'username' => 'Username/Password Salah',
+            'password' => 'Username/Password Salah',
         ])->onlyInput('username');
     }
 
@@ -71,24 +72,20 @@ class LoginController extends Controller
         $newUser['status'] = 0;
 
         try {
-           // DB::beginTransaction();
-
-            // Store profile image
+          
             $profilImg = $newUser['profil_img'];
             $profilName = Str::random(10).$newUser['profil_img']->getClientOriginalName();
             $profilImg->storeAs('public/profil', $profilName);
 
 
-            // Overide profile_img name
+            
              $newUser['profil_img'] = $profilName;
             
             UserModel::create($newUser);
 
-            // Db::commit();
             return redirect()->route('login')->with('success', 'Anda Berhasil Register');
 
         } catch (\Throwable $th) {
-            //DB::rollback();
 
             return back()->withErrors([
                 'error' => $th->getMessage(),

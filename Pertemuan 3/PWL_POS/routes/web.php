@@ -32,6 +32,16 @@ Route::post('/storeMember', [LoginController::class, 'storeMember'])->name('regi
 
 Route::middleware(["auth"])->group(function(){
     Route::get('/',[WelcomeController::class, 'index'])->name('dashboard');
+    
+    Route::group(['prefix' => 'dashboard'], function () {   
+        Route::get('/exportPdf', [WelcomeController::class,'exportPdf'])->name('exportPdf');
+        Route::get('/exportExcel', [WelcomeController::class,'exportExcel'])->name('exportExcel');
+        Route::post('/list', [WelcomeController::class, 'list'])->name('list');
+        Route::get('/validasiStatus/{id}', [WelcomeController::class, 'validasiStatus'])->name('validasiStatus');
+        Route::post('/list', [WelcomeController::class, 'list'])->name('list');
+        Route::get('/{id}', [WelcomeController::class, 'show'])->name('show');
+        Route::delete('/{id}', [WelcomeController::class, 'destroy'])->name('delete');
+    });
 
     Route::group(['prefix' => 'kategori'], function(){
         Route::get('/', [KategoriController::class, 'index']);
@@ -53,6 +63,7 @@ Route::middleware(["auth"])->group(function(){
         Route::get('/{id}/edit', [UserController::class, 'edit']);
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
+        Route::post('/user/{id}', [UserController::class, 'validateUser'])->name('validate.user');
     });
     
     
@@ -93,6 +104,7 @@ Route::middleware(["auth"])->group(function(){
     Route::group(['prefix' => 'penjualan'], function () {
         Route::get('/', [PenjualanController::class, 'index']);
         Route::get('/list', [PenjualanController::class, 'list']);
+        Route::get('/create', [PenjualanController::class, 'create']);
         Route::post('/', [PenjualanController::class, 'store']);
         Route::get('/{id}', [PenjualanController::class, 'show']);
         Route::get('/{id}/edit', [PenjualanController::class, 'edit']);

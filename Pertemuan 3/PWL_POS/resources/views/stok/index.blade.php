@@ -34,8 +34,8 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Barang ID</th>
-          <th>User ID</th>
+          <th>Nama Barang</th>
+          <th>Nama</th>
           <th>Stok Tanggal</th>
           <th>Stok Jumlah</th>
           <th>Aksi</th>
@@ -57,7 +57,7 @@
     "dataType": "json",
     "type": "POST",
     "data": function(d) {
-      d.stok_id = $('#stok_id').val();
+      d.barang_id = $('#barang_id').val();
     }
     },
     columns: [
@@ -67,12 +67,12 @@
     orderable: false,
     searchable: false
     },{
-    data: "barang.barang_id", 
+    data: "barang.barang_nama", 
     className: "",
     orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
     searchable: true // searchable: true, jika ingin kolom ini bisa dicari
     },{
-    data: "user.user_id", 
+    data: "user.nama", 
     className: "",
     orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
     searchable: true // searchable: true, jika ingin kolom ini bisa dicari
@@ -96,7 +96,7 @@
     ],
     });
 
-    $('#stok_id').on('change', function() {
+    $('#barang_id').on('change', function() {
       console.log('first')
       dataStok.ajax.reload()
     });

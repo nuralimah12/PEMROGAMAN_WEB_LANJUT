@@ -23,7 +23,7 @@
             <select name="user_id" required id="user_id" class="form-control">
               <option value="">- Semua -</option>
               @foreach ($user as $item)
-              <option value="{{$item->user_id}}">{{$item->nama}}</option>
+              <option value="{{$item->user_id}}">{{$item->username}}</option>
               @endforeach
             </select>
             <small class="form-text text-muted">User</small>
@@ -104,8 +104,6 @@
     },
     ],
     });
-
-
     $('#user_id').on('change', function() {
       dataPenjualan.ajax.reload();
     });

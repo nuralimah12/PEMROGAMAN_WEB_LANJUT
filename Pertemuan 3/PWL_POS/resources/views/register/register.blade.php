@@ -34,7 +34,7 @@
       <form action="{{ route("register.auth")}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name" name="nama">
+          <input type="text" class="form-control" placeholder="Name" name="nama">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -91,18 +91,7 @@
         </div>
       </form>
 
-      <div class="social-auth-links text-center">
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i>
-          Sign up using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i>
-          Sign up using Google+
-        </a>
-      </div>
-
-      <a href="login.html" class="text-center">I already have a membership</a>
+      <a href="login" class="text-center">I already have a member</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

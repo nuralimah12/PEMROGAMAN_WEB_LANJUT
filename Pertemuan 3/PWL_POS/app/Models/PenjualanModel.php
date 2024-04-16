@@ -26,8 +26,6 @@ class PenjualanModel extends Model
         return $this->belongsTo(userModel::class, 'user_id', 'user_id');
     }
 
-
-
     protected $casts = [
         'penjualan_tanggal'  => 'date:d-m-Y',
     ];

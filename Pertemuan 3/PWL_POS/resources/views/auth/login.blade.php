@@ -83,12 +83,8 @@
         </div>
       </form>
       <!-- /.social-auth-links -->
-
-      <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
       <p class="mb-0">
-        <a href="{{route("register")}}" class="text-center">Register a new membership</a>
+        <a href="{{route("register")}}" class="text-center">Register a new member</a>
       </p>
     </div>
     <!-- /.login-card-body -->

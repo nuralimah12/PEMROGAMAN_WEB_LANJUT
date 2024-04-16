@@ -22,6 +22,7 @@
                       <p>Dashboard</p> 
                     </a> 
                   </li> 
+                  @if (auth()->user()->level->level_nama!="Member")
                   <li class="nav-header">Data Pengguna</li> 
                   <li class="nav-item"> 
                     <a href="{{ url('/level') }}" class="nav-link {{ ($activeMenu == 'level')? 
@@ -62,7 +63,8 @@
                       <i class="nav-icon fas fa-tag"></i> 
                       <p>Data Transaksi Penjualan</p> 
                     </a> 
-                  </li>             
+                  </li>         
+                  @endif  
                   <li class="nav-item"> 
                     <a href="{{ url('/logout') }}" class="nav-link {{ ($activeMenu == 'logout')?  'active' : '' }} "> 
                       <i class="nav-icon fas fa-sign-out-alt"></i> 

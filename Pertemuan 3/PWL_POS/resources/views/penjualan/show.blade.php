@@ -45,7 +45,23 @@
           </ul>
         </td>
       </tr>
-
+      <tr>
+        <th>Total Penjualan</th>
+        <td>
+          <ul>
+            @php
+            $totalPenjualan = 0; // Inisialisasi total penjualan
+            @endphp
+            @foreach ($penjualanDetail as $item)
+            @php
+                $totalPenjualan += $item->harga * $item->jumlah; // Menghitung total penjualan
+            @endphp
+            <li>{{ $item->harga * $item->jumlah }}</li>
+            @endforeach
+          <li>Total: {{ $totalPenjualan }}</li> <!
+        </ul>
+      </td>
+      </tr>
     </table>
     @endempty
     <a href="{{ url('penjualan') }}" class="btn btn-sm btn-default mt-2">Kembali</a>

@@ -43,17 +43,16 @@ class PenjualanController extends Controller
     {
  
 
-        $transactions = (object) DB::table('t_penjualan as p')
-                ->join('t_penjualan_detail as pd', 'p.penjualan_id','=', 'pd.penjualan_id')
-                ->join('m_user as u', 'p.user_id','=', 'u.user_id')
-                ->selectRaw('p.penjualan_id,u.nama, p.pembeli, p.penjualan_kode, p.penjualan_tanggal, sum(pd.harga * pd.jumlah) as total')
+        $transactions = (object) DB::table('t_penjualan as t')
+                ->join('t_penjualan_detail as td', 't.penjualan_id','=', 'td.penjualan_id')
+                ->join('m_user as u', 't.user_id','=', 'u.user_id')
+                ->selectRaw('t.penjualan_id,u.nama, t.pembeli, t.penjualan_kode, t.penjualan_tanggal, sum(td.harga * td.jumlah) as total')
                 ->groupBy('u.nama')
-                ->groupBy('p.pembeli')
-                ->groupBy('p.penjualan_id')
-                ->groupBy('p.penjualan_kode')
-                ->groupBy('p.penjualan_tanggal')
+                ->groupBy('t.pembeli')
+                ->groupBy('t.penjualan_id')
+                ->groupBy('t.penjualan_kode')
+                ->groupBy('t.penjualan_tanggal')
                 ->get();
-
         if($request->user_id){
             $transactions->where('user_id', $request->user_id);
         }
@@ -137,7 +136,6 @@ class PenjualanController extends Controller
     public function update(Request $request, string $id)
     {
 
-        // dd($request->all(), $id);
         $request->validate([
             'barang_id' => 'nullable|array',
             'user_id' => 'nullable|integer',
@@ -153,12 +151,12 @@ class PenjualanController extends Controller
         $barang = BarangModel::all();
 
 
-        $barangLaku = $request->only('barang_id');
+        $terjual = $request->only('barang_id');
 
-        if(count($barangLaku) > 0){
+        if(count($terjual) > 0){
             PenjualanDetailModel::where('penjualan_id', $id)->delete();
 
-            foreach ($barangLaku as $key => $item) {
+            foreach ($terjual as $key => $item) {
 
                 PenjualanDetailModel::create([
                     'penjualan_id' => $penjualan->penjualan_id,
@@ -171,12 +169,11 @@ class PenjualanController extends Controller
                 $stok->decrement('stok_jumlah', 1);
     
                 if($stok->stok_jumlah < 0 ){
-                return back()->with('error', 'Stok '.$stok->barang_nama.' Tidak Mencukupi');
+                return back()->with('error', 'Stok '.$stok->barang_nama.' Tidak Cukup');
                 }
             }
         }
-
-        //DB::commit();
+    
 
         return redirect('/penjualan')->with('success', 'Data penjualan berhasil diubah');
     }
@@ -195,15 +192,13 @@ class PenjualanController extends Controller
         $barang = BarangModel::all();
     
 
-        //DB::beginTransaction();
-
         $penjualan = penjualanModel::create($request->all());
 
 
-        $barangLaku = $request->only('barang_id');
+        $terjual = $request->only('barang_id');
 
 
-        foreach ($barangLaku as $key => $item) {
+        foreach ($terjual as $key => $item) {
 
             PenjualanDetailModel::create([
                 'penjualan_id' => $penjualan->penjualan_id,
@@ -216,11 +211,11 @@ class PenjualanController extends Controller
             $stok->decrement('stok_jumlah', 1);
 
             if($stok->stok_jumlah < 0 ){
-            return back()->with('error', 'Stok '.$stok->barang_nama.' Tidak Mencukupi');
+            return back()->with('error', 'Stok '.$stok->barang_nama.' Tidak Cukup');
             }
         }
 
-       // DB::commit();
+
 
         return redirect('/penjualan')->with('success', 'Data penjualan berhasil disimpan');
     }
@@ -240,9 +235,34 @@ class PenjualanController extends Controller
 
             return redirect('/penjualan')->with('success', 'Data penjualan berhasil dihapus');
         } catch (\Throwable $th) {
-           // dd($th);
-            return redirect('/penjualan')->with('error', 'Data penjualan gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
+            return redirect('/penjualan')->with('error', 'Data penjualan gagal dihapus');
         }
     }
+
+    public function create()
+    {
+        $breadcrumb = (object) [
+            'title' => 'Tambah Penjualan',
+            'list' => ['Home', 'Penjualan', 'Tambah'],
+        ];
+
+        $page = (object) [
+            'title' => 'Tambah penjualan baru'
+        ];
+
+        $barang = StokModel::where('stok_jumlah', '>' ,0)->with('barang')->get();
+        $user = UserModel::all();
+
+        $activeMenu = 'penjualan';
+
+        return view('penjualan.create',[
+            'breadcrumb' => $breadcrumb, 
+            'page' => $page, 
+            'barang' => $barang, 
+            'user' => $user, 
+            'activeMenu' => $activeMenu
+        ]);
+    }
+
  
 }

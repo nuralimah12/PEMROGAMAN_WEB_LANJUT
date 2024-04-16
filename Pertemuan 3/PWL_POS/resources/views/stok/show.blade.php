@@ -19,12 +19,12 @@
                     <td>{{ $stok->stok_id }}</td> 
                 </tr> 
                 <tr> 
-                    <th>Barang ID</th> 
-                    <td>{{ $stok->barang_id }}</td> 
+                    <th>Nama Barang</th> 
+                    <td>{{ $stok->barang->barang_nama}}</td> 
                 </tr> 
                 <tr> 
-                    <th>User ID</th> 
-                    <td>{{ $stok->user_id }}</td> 
+                    <th>Username</th> 
+                    <td>{{ $stok->user->username }}</td> 
                 </tr> 
                 <tr> 
                     <th>Stok Tanggal</th> 
@@ -40,7 +40,7 @@
                 </tr> 
             </table> 
         @endempty 
-        <a href="{{ url('user') }}" class="btn btn-sm btn-default mt2">Kembali</a> 
+        <a href="{{ url('stok') }}" class="btn btn-sm btn-default mt2">Kembali</a> 
     </div> 
   </div> 
 @endsection 

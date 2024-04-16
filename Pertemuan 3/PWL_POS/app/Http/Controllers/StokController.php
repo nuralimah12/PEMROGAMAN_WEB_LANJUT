@@ -24,7 +24,6 @@ class StokController extends Controller
         ];
 
         $activeMenu = 'stok';
-
         $barang = BarangModel::all();
         $user = userModel::all();
 
@@ -73,6 +72,8 @@ class StokController extends Controller
         ];
 
         $level = LevelModel::all();
+        $barang = BarangModel::all();
+        $user = userModel::all();
 
         $activeMenu = 'stok';
 
@@ -80,6 +81,8 @@ class StokController extends Controller
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'level' => $level,
+            'barang' => $barang,
+            'user'=>$user,
             'activeMenu' => $activeMenu
         ]);
     }
