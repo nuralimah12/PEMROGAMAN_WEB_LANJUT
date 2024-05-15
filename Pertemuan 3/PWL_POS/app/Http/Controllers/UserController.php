@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\UserModel;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -71,20 +72,26 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-        $request->validate([
+       $newUser = $request->validate([
             // username harus diisi, berupa string, minimal 3 karakter, dan bernilai unik di tabel m_user kolom username
             'username' => 'required|string|min:3|unique:m_user,username',
             'nama'     => 'required|string|max:100', // nama harus diisi, berupa string, dan maksimal 100 karakter
             'password' => 'required|min:5',          // password harus diisi dan minimal 5 karakter
-            'level_id' => 'required|integer'         // level_id harus diisi dan berupa angka
+            'level_id' => 'required|integer' ,        // level_id harus diisi dan berupa angka
+            'status'   => 'required|boolean',
+            'profil_img' => 'required|mimes:png,jpg,jpeg, max:1024',
         ]);
 
-        UserModel::create([
-            'username' => $request->username,
-            'nama'     => $request->nama,
-            'password' => bcrypt($request->password), // password dienkripsi sebelum disimpan
-            'level_id' => $request->level_id
-        ]);
+        $profilImg = $newUser['profil_img'];
+        $profilName = Str::random(10).$newUser['profil_img']->getClientOriginalName();
+        $profilImg->storeAs('public/profil', $profilName);
+
+
+        
+         $newUser['profil_img'] = $profilName;
+
+        UserModel::create($newUser);
+
 
         return redirect('/user')->with('success', 'Data user berhasil disimpan');
     }

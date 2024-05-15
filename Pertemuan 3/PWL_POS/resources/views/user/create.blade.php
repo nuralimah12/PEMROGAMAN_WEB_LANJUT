@@ -7,7 +7,7 @@
       <div class="card-tools"></div> 
     </div> 
     <div class="card-body"> 
-      <form method="POST" action="{{ url('user') }}" class="form-horizontal"> 
+      <form method="POST" action="{{ url('user') }}" class="form-horizontal" enctype="multipart/form-data"> 
         @csrf 
         <div class="form-group row"> 
           <label class="col-1 control-label col-form-label">Level</label> 
@@ -22,6 +22,15 @@
               <small class="form-text text-danger">{{ $message }}</small> 
             @enderror 
           </div> 
+          @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
         </div> 
         <div class="form-group row"> 
           <label class="col-1 control-label col-form-label">Username</label> 
@@ -53,7 +62,7 @@
         <div class="form-group row"> 
           <label class="col-1 control-label col-form-label">Profil</label> 
           <div class="col-11"> 
-            <input type="file" class="form-control" id="profil_image" name="profil_image" value="{{ old('profi_image') }}" required> 
+            <input type="file" class="form-control" id="profil_img" name="profil_img" value="{{ old('profil_img') }}" required> 
             @error('nama') 
               <small class="form-text text-danger">{{ $message }}</small> 
             @enderror 

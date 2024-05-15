@@ -31,6 +31,14 @@
                     <td>{{ $user->nama }}</td> 
                 </tr> 
                 <tr> 
+                    <th>Status</th> 
+                    <td>{{ $user->status }}</td> 
+                </tr> 
+                <tr> 
+                    <th>Profil Image</th> 
+                    <td><img src="{{asset('storage/profil/'.$user->profil_img)}}"></td>
+                </tr>
+                <tr> 
                     <th>Password</th> 
                     <td>********</td> 
                 </tr> 

@@ -67,7 +67,6 @@
                 <th>Foto Profil</th>
                 <td><img src="{{asset('storage/profil/'.auth()->user()->profil_img)}}" class=" "></td>
             </tr>
-
         </table>
         @endif
     </div>
