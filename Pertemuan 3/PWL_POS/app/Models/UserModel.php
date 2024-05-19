@@ -5,41 +5,43 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class UserModel extends Authenticatable
+class UserModel extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
+    // use HasFactory;
 
     public function getJWTIdentifier(){
         return $this->getKey();
     }
 
     public function getJWTCustomClaims(){
-        return [];
+        return[];
     }
 
-    protected $table = 'm_user';
-    protected $primaryKey = 'user_id';
-    protected $fillable = ['level_id','username','nama','password','profil_img','status'];
+    protected $table = 'm_user'; //mendefinisikan nama tabel yang digunakan oleh model ini
+    protected $primaryKey = 'user_id'; //mendefinisikan primary key dari tabel yang digunakan
+    /** 
+     * The attributes that are mass assignable
+     * 
+     * @var array
+     */
+    protected $fillable = ['level_id','username','nama','password', 'status', 'profile_img'];
 
-    public function level(): BelongsTo
-    {
-        // Gunakan fully qualified class name untuk LevelModel
+    public function level(): BelongsTo{
         return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
     }
 
-    protected $hidden = [
-        'password',
+    // public function stok(): HasMany{
+    //     return $this->hasMany(StokModel::class, 'stok_id', 'stok_id');
+    // }
 
+    protected $hidden = [
+        'password'
     ];
 
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'password' => 'hashed',
     ];
