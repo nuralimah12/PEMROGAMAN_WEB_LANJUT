@@ -16,7 +16,8 @@ class RegisterController extends Controller
             'username' => 'required',
             'nama' => 'required',
             'password' => 'required|min:5|confirmed',
-            'level_id' => 'required'
+            'level_id' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,gif,svg|max:2048'
         ]);
 
         //if validations fails
@@ -24,12 +25,22 @@ class RegisterController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        //create user
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = $image->hashName();
+            $image->move(public_path('uploads/images'), $imageName);
+        } else {
+            return response()->json(['image' => 'Image upload failed'], 400);
+        }
+
+        // Create user
         $user = UserModel::create([
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => bcrypt($request->password),
             'level_id' => $request->level_id,
+            'image' => $imageName,
         ]);
 
         //return response JSON user is created
