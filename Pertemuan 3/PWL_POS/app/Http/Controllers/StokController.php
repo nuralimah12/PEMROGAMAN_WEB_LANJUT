@@ -32,7 +32,8 @@ class StokController extends Controller
         'page' => $page, 
         'barang' => $barang, 
         'user' => $user, 
-        'activeMenu' => $activeMenu
+        'activeMenu' => $activeMenu,
+        'unvalidateUser' => userModel::where('status', false)->get()
         ]);
     }
 
@@ -83,7 +84,8 @@ class StokController extends Controller
             'level' => $level,
             'barang' => $barang,
             'user'=>$user,
-            'activeMenu' => $activeMenu
+            'activeMenu' => $activeMenu,
+            'unvalidateUser' => userModel::where('status', false)->get()
         ]);
     }
 
@@ -125,7 +127,8 @@ class StokController extends Controller
             'breadcrumb' => $breadcrumb, 
             'page' => $page,
             'stok' => $stok,
-            'activeMenu' => $activeMenu
+            'activeMenu' => $activeMenu,
+            'unvalidateUser' => userModel::where('status', false)->get()
         ]);
     }
 
@@ -151,7 +154,9 @@ class StokController extends Controller
             'stok'=> $stok,
             'barang' => $barang, 
             'user' => $user, 
-            'activeMenu' => $activeMenu]);
+            'activeMenu' => $activeMenu,
+            'unvalidateUser' => userModel::where('status', false)->get()
+        ]);
     }
 
     public function update(Request $request, string $id) {

@@ -1,8 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Charts\StockChart;
 use App\Charts\userChart;
+use App\Charts\transaksiChart;
 use App\Exports\UsersExport;
 use App\Models\UserModel;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -12,7 +13,18 @@ use Yajra\DataTables\Facades\DataTables;
 
 class WelcomeController extends Controller
 {
-        public function index(userChart $chart)
+    protected $userChart;
+    protected $transaksiChart;
+    protected $stockChart;
+
+    public function __construct(userChart $userChart, transaksiChart $transaksiChart, StockChart $stockChart)
+    {
+        $this->userChart = $userChart;
+        $this->transaksiChart = $transaksiChart;
+        $this->stockChart = $stockChart;
+    }
+
+    public function index()
     {
         $breadcrumb = (object) [
             'title' => 'Welcome',
@@ -23,21 +35,36 @@ class WelcomeController extends Controller
 
         $members = UserModel::where('status', 0)->get();
 
-        return view('welcome', ['breadcrumb' => $breadcrumb, 'members' => $members, 'chart' => $chart->build(),'activeMenu' => $activeMenu]);
+        $userChart = $this->userChart->build();
+        $transaksiChart = $this->transaksiChart->build();
+        $stockChart = $this->stockChart->build();
+
+        return view('welcome', [
+            'breadcrumb' => $breadcrumb,
+            'members' => $members,
+            'userChart' => $userChart,
+            'transaksiChart' => $transaksiChart,
+            'stockChart'=> $stockChart,
+            'activeMenu' => $activeMenu,
+            'unvalidateUser' => userModel::where('status', false)->get(),
+        ]);
     }
 
     
 
     public function list(Request $request)
     {
-        $users = UserModel::with('level')
-                ->whereRelation('level', 'level_nama', 'Member' );
-
+        $users = UserModel::select('user_id', 'username', 'nama', 'level_id','status') ->with('level');
+        
         if($request->level_id){
             $users->where('level_id', $request->level_id);
         }
 
+
         return DataTables::of($users)->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
+        ->addColumn('status', function ($user) { // menambahkan kolom status
+            return $user->status == 0 ? 'Belum Tervalidasi' : 'Sudah Tervalidasi';
+        })
         ->addColumn('aksi', function ($user) { // menambahkan kolom aksi
         $btn = '<a href="'.url('/dashboard/' . $user->user_id).'" class="btn btn-info btn-sm">Detail</a> ';
         $btn .= '<a href="'.url('/dashboard/validasiStatus/' . $user->user_id ).'" class="btn btn-warning btn-sm">'.($user->status == 0 ? 'Validate' : 'Unvalidate' ).'</a> ';
@@ -114,7 +141,7 @@ class WelcomeController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
 
             // Jika terjadi error ketika menghapus data, redirect kembali ke halaman dengan membawa pesan error
-            return redirect('dashboard')->with('error', 'Data user gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
+            return redirect('/')->with('error', 'Data user gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
     }
 }

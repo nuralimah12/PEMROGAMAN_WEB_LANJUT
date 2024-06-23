@@ -47,7 +47,7 @@ yang butuh method PUT -->
         <label class="col-1 control-label col-form-label">Kode Barang</label>
         <div class="col-11">
           <input type="text" class="form-control" id="barang_kode" name="barang_kode"
-            value="{{ old('barang_kode', $barang->barang_kode) }}" required>
+            value="{{ old('barang_kode', $barang->barang_kode) }}" readonly>
           @error('barang_kode')
           <small class="form-text text-danger">{{ $message }}</small>
           @enderror

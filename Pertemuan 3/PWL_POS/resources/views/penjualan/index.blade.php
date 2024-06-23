@@ -15,6 +15,11 @@
     @if (session('error'))
     <div class="alert alert-danger">{{session('error')}}</div>
     @endif
+    @if (auth()->user()->level->level_nama != 'Member')
+    <div class="chart-wrapper container-fluid">
+      {!! $chart->container() !!}
+    </div>
+    @endif
     <div class="row">
       <div class="col-md-12">
         <div class="form-group row">
@@ -51,6 +56,10 @@
 @push('css')
 @endpush
 @push('js')
+@if (auth()->user()->level->level_nama != 'Member')
+<script src="{{ $chart->cdn() }}"></script>
+{{ $chart->script() }}
+@endif
 <script>
   $(document).ready(function() {
     var dataPenjualan = $('#table_penjualan').DataTable({

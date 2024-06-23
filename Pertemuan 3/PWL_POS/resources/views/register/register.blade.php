@@ -10,15 +10,21 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset("adminlte/plugins/fontawesome-free/css/all.min.css")}}">
   <!-- icheck bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ asset("adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css")}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset("adminlte/dist/css/adminlte.min.css")}}">
+  <style>
+    .upload-info {
+      margin-top: -10px; /* Adjust this value as needed */
+    }
+  </style>
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="{{ asset("adminlte/index2.html")}}" class="h1"><b>Admin</b>LTE</a>
+      <a href="{{ asset("adminlte/index2.html")}}" class="h1"><b>Register</b></a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Register a new membership</p>
@@ -66,15 +72,28 @@
           </div>
         </div>
         <div class="input-group mb-3">
-            <input type="file" class="form-control" placeholder="Profile" name="profil_img">
-            <div class="input-group-append">
+            <input type="file" class="form-control" placeholder="Upload Photos" name="profil_img"  enctype='multipart/form-data'>
+            <div class="input-group-append">  
               <div class="input-group-text">
                 <span class="fas fa-file"></span>
               </div>
-            </div>
           </div>
+        </div>
+        <div class="mb-4 upload-info">
+          <small class="form-text text-muted">Upload foto: jpg, jpeg, png</small>
+        </div>
 
-        <div class="row">
+          {{-- <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Pilih Foto</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputFoto" name="profil_img"  enctype='multipart/form-data'>
+                <label class="custom-file-label" for="inputFoto">Choose file</label>
+            </div>
+        </div> --}}
+
+        {{-- <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="agreeTerms" name="terms" value="agree">
@@ -82,7 +101,7 @@
                I agree to the <a href="#">terms</a>
               </label>
             </div>
-          </div>
+          </div> --}}
           <!-- /.col -->
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Register</button>

@@ -42,7 +42,6 @@ class RegisterController extends Controller
             'level_id' => $request->level_id,
             'image' => $imageName,
         ]);
-
         //return response JSON user is created
         if($user){
             return response()->json([

@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
@@ -25,112 +26,120 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('login',[AuthController::class,'index'])->name('login');
-Route::get('register',[AuthController::class,'register'])->name('register');
-Route::post('proses_login',[AuthController::class,'proses_login'])->name('proses_login');
-Route::get('logout',[AuthController::class,'logout'])->name('logout');
-Route::post('proses_register', [AuthController::class,'proses_register'])->name('proses_register');
+// Route::get('login',[AuthController::class,'index'])->name('login');
+// Route::get('register',[AuthController::class,'register'])->name('register');
+// Route::post('proses_login',[AuthController::class,'proses_login'])->name('proses_login');
+// Route::get('logout',[AuthController::class,'logout'])->name('logout');
+// Route::post('proses_register', [AuthController::class,'proses_register'])->name('proses_register');
 
 
-Route::group(['middleware'=>['auth']],function(){
+// Route::group(['middleware'=>['auth']],function(){
 
-Route::group(['middleware' => ['cek_login:1']], function(){
-    Route::resource('admin',AdminController::class);
-});
-
-Route::group(['middleware' => ['cek_login:2']], function(){
-    Route::resource('manager',ManagerController::class);
-});
-
-});
-// Route::group(['prefix' => 'login'], function () {
-//     Route::get('/', [LoginController::class, 'index'])->name('login');
-//     Route::post('/', [LoginController::class, 'store']);
+// Route::group(['middleware' => ['cek_login:1']], function(){
+//     Route::resource('admin',AdminController::class);
 // });
-// Route::get('/logout', [LoginController::class, 'logout']);
-// Route::get('/register', [LoginController::class, 'register'])->name('register');
-// Route::post('/storeMember', [LoginController::class, 'storeMember'])->name('register.auth');
 
-// Route::middleware(["auth"])->group(function(){
-//     Route::get('/',[WelcomeController::class, 'index'])->name('dashboard');
-    
-//     Route::group(['prefix' => 'dashboard'], function () {   
-//         Route::get('/exportPdf', [WelcomeController::class,'exportPdf'])->name('exportPdf');
-//         Route::get('/exportExcel', [WelcomeController::class,'exportExcel'])->name('exportExcel');
-//         Route::post('/list', [WelcomeController::class, 'list'])->name('list');
-//         Route::get('/validasiStatus/{id}', [WelcomeController::class, 'validasiStatus'])->name('validasiStatus');
-//         Route::post('/list', [WelcomeController::class, 'list'])->name('list');
-//         Route::get('/{id}', [WelcomeController::class, 'show'])->name('show');
-//         Route::delete('/{id}', [WelcomeController::class, 'destroy'])->name('delete');
-//     });
-
-//     Route::group(['prefix' => 'kategori'], function(){
-//         Route::get('/', [KategoriController::class, 'index']);
-//         Route::post('/list', [KategoriController::class, 'list']);
-//         Route::get('/create', [KategoriController::class, 'create']);
-//         Route::post('/', [KategoriController::class, 'store']);
-//         Route::get('/{id}', [KategoriController::class, 'show']);
-//         Route::get('/{id}/edit', [KategoriController::class, 'edit']);
-//         Route::put('/{id}', [KategoriController::class, 'update']);
-//         Route::delete('/{id}', [KategoriController::class, 'destroy']);
-//     });
-    
-//     Route::group(['prefix' => 'user'], function(){
-//         Route::get('/', [UserController::class, 'index']);
-//         Route::post('/list', [UserController::class, 'list']);
-//         Route::get('/create', [UserController::class, 'create']);
-//         Route::post('/', [UserController::class, 'store']);
-//         Route::get('/{id}', [UserController::class, 'show']);
-//         Route::get('/{id}/edit', [UserController::class, 'edit']);
-//         Route::put('/{id}', [UserController::class, 'update']);
-//         Route::delete('/{id}', [UserController::class, 'destroy']);
-//         Route::post('/user/{id}', [UserController::class, 'validateUser'])->name('validate.user');
-//     });
-    
-    
-//     Route::group(['prefix' => 'level'], function () {
-//         Route::get('/', [LevelController::class, 'index']);
-//         Route::post('/list', [LevelController::class, 'list']);
-//         Route::get('/create', [LevelController::class, 'create']);
-//         Route::post('/', [LevelController::class, 'store']);
-//         Route::get('/{id}', [LevelController::class, 'show']);
-//         Route::get('/{id}/edit', [LevelController::class, 'edit']);
-//         Route::put('/{id}', [LevelController::class, 'update']);
-//         Route::delete('/{id}', [LevelController::class, 'destroy']);
-//     });
-    
-    
-//     Route::group(['prefix' => 'barang'], function () {
-//         Route::get('/', [BarangController::class, 'index']);
-//         Route::post('/list', [BarangController::class, 'list']);
-//         Route::get('/create', [BarangController::class, 'create']);
-//         Route::post('/', [BarangController::class, 'store']);
-//         Route::get('/{id}', [BarangController::class, 'show']);
-//         Route::get('/{id}/edit', [BarangController::class, 'edit']);
-//         Route::put('/{id}', [BarangController::class, 'update']);
-//         Route::delete('/{id}', [BarangController::class, 'destroy']);
-//     });
-    
-//     Route::group(['prefix' => 'stok'], function () {
-//         Route::get('/', [StokController::class, 'index']);
-//         Route::post('/list', [StokController::class, 'list']);
-//         Route::get('/create', [StokController::class, 'create']);
-//         Route::post('/', [StokController::class, 'store']);
-//         Route::get('/{id}', [StokController::class, 'show']);
-//         Route::get('/{id}/edit', [StokController::class, 'edit']);
-//         Route::put('/{id}', [StokController::class, 'update']);
-//         Route::delete('/{id}', [StokController::class, 'destroy']);
-//     });
-    
-//     Route::group(['prefix' => 'penjualan'], function () {
-//         Route::get('/', [PenjualanController::class, 'index']);
-//         Route::get('/list', [PenjualanController::class, 'list']);
-//         Route::get('/create', [PenjualanController::class, 'create']);
-//         Route::post('/', [PenjualanController::class, 'store']);
-//         Route::get('/{id}', [PenjualanController::class, 'show']);
-//         Route::get('/{id}/edit', [PenjualanController::class, 'edit']);
-//         Route::put('/{id}', [PenjualanController::class, 'update']);
-//         Route::delete('/{id}', [PenjualanController::class, 'destroy']);
-//     });
+// Route::group(['middleware' => ['cek_login:2']], function(){
+//     Route::resource('manager',ManagerController::class);
+// });
 
 // });
+Route::group(['prefix' => 'login'], function () {
+    Route::get('/', [LoginController::class, 'index'])->name('login');
+    Route::post('/', [LoginController::class, 'store']);
+});
+Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('/register', [LoginController::class, 'register'])->name('register');
+Route::post('/storeMember', [LoginController::class, 'storeMember'])->name('register.auth');
+
+Route::middleware(["auth"])->group(function(){
+    Route::get('/',[WelcomeController::class, 'index'])->name('dashboard');
+    
+    Route::group(['prefix' => 'dashboard'], function () {   
+        Route::get('/exportPdf', [WelcomeController::class,'exportPdf'])->name('exportPdf');
+        Route::get('/exportExcel', [WelcomeController::class,'exportExcel'])->name('exportExcel');
+        Route::post('/list', [WelcomeController::class, 'list'])->name('list');
+        Route::get('/validasiStatus/{id}', [WelcomeController::class, 'validasiStatus'])->name('validasiStatus');
+        Route::post('/list', [WelcomeController::class, 'list'])->name('list');
+        Route::get('/{id}', [WelcomeController::class, 'show'])->name('show');
+        Route::delete('/{id}', [WelcomeController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['prefix' => 'kategori'], function(){
+        Route::get('/', [KategoriController::class, 'index']);
+        Route::post('/list', [KategoriController::class, 'list']);
+        Route::get('/create', [KategoriController::class, 'create']);
+        Route::post('/', [KategoriController::class, 'store']);
+        Route::get('/{id}', [KategoriController::class, 'show']);
+        Route::get('/{id}/edit', [KategoriController::class, 'edit']);
+        Route::put('/{id}', [KategoriController::class, 'update']);
+        Route::delete('/{id}', [KategoriController::class, 'destroy']);
+    });
+    
+    Route::group(['prefix' => 'user'], function(){
+        Route::get('/', [UserController::class, 'index']);
+        Route::post('/list', [UserController::class, 'list']);
+        Route::get('/validasiStatus/{id}', [UserController::class, 'validasiStatus'])->name('validasiStatus');
+        Route::get('/create', [UserController::class, 'create']);
+        Route::post('/', [UserController::class, 'store']);
+        Route::get('/{id}', [UserController::class, 'show']);
+        Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [UserController::class, 'update']);
+        // Route::get('/{id}/edit', [UserController::class, 'editmember'])->name('user.editmember');
+        // Route::put('/{id}', [UserController::class, 'updatemember']);
+        Route::delete('/{id}', [UserController::class, 'destroy']);
+        Route::post('/user/{id}', [UserController::class, 'validateUser'])->name('validate.user');
+    });
+    
+    
+    Route::group(['prefix' => 'level'], function () {
+    Route::get('/', [LevelController::class, 'index']);
+        Route::post('/list', [LevelController::class, 'list']);
+        Route::get('/create', [LevelController::class, 'create']);
+        Route::post('/', [LevelController::class, 'store']);
+        Route::get('/{id}', [LevelController::class, 'show']);
+        Route::get('/{id}/edit', [LevelController::class, 'edit']);
+        Route::put('/{id}', [LevelController::class, 'update']);
+        Route::delete('/{id}', [LevelController::class, 'destroy']);
+    });
+    
+    
+    Route::group(['prefix' => 'barang'], function () {
+        Route::get('/', [BarangController::class, 'index']);
+        Route::post('/list', [BarangController::class, 'list']);
+        Route::get('/create', [BarangController::class, 'create']);
+        Route::post('/', [BarangController::class, 'store']);
+        Route::get('/{id}', [BarangController::class, 'show']);
+        Route::get('/{id}/edit', [BarangController::class, 'edit']);
+        Route::put('/{id}', [BarangController::class, 'update']);
+        Route::delete('/{id}', [BarangController::class, 'destroy']);
+    });
+    
+    Route::group(['prefix' => 'stok'], function () {
+        Route::get('/', [StokController::class, 'index']);
+        Route::post('/list', [StokController::class, 'list']);
+        Route::get('/create', [StokController::class, 'create']);
+        Route::post('/', [StokController::class, 'store']);
+        Route::get('/{id}', [StokController::class, 'show']);
+        Route::get('/{id}/edit', [StokController::class, 'edit']);
+        Route::put('/{id}', [StokController::class, 'update']);
+        Route::delete('/{id}', [StokController::class, 'destroy']);
+    });
+    
+    Route::group(['prefix' => 'penjualan'], function () {
+        Route::get('/', [PenjualanController::class, 'index']);
+        Route::get('/list', [PenjualanController::class, 'list']);
+        Route::get('/create', [PenjualanController::class, 'create']);
+        Route::post('/', [PenjualanController::class, 'store']);
+        Route::get('/{id}', [PenjualanController::class, 'show']);
+        Route::get('/{id}/edit', [PenjualanController::class, 'edit']);
+        Route::put('/{id}', [PenjualanController::class, 'update']);
+        Route::delete('/{id}', [PenjualanController::class, 'destroy']);
+    });
+
+     Route::group(['prefix' => 'member'], function () {
+        Route::get('/{id}/edit', [MemberController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [MemberController::class, 'update']);
+    });
+
+});

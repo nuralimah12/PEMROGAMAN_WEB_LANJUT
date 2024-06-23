@@ -53,7 +53,7 @@
             <option value="">- Pilih User -</option>
             @foreach($user as $item)
             <option value="{{ $item->user_id }}" @if($item->user_id ==
-              $penjualan->user_id) selected @endif>{{ $item->username }}</option>
+              $penjualan->user_id) selected @endif>{{ $item->nama }}</option>
             @endforeach
           </select>
           @error('user_id')
@@ -75,7 +75,7 @@
         <label class="col-1 control-label col-form-label">Kode Penjualan</label>
         <div class="col-11">
           <input type="text" class="form-control" id="penjualan_kode" name="penjualan_kode"
-            value="{{ old('penjualan_kode', $penjualan->penjualan_kode) }}" required>
+            value="{{ old('penjualan_kode', $penjualan->penjualan_kode) }}" readonly>
           @error('penjualan_kode')
           <small class="form-text text-danger">{{ $message }}</small>
           @enderror

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LevelController;
+use App\Http\Controllers\api\PenjualanController;
+use App\Http\Controllers\api\TransaksiController;
 use App\Http\Controllers\Api\UserController;
 
 /*
@@ -57,4 +59,14 @@ Route::get('barangs/{barang}', [BarangController::class, 'show']);
 Route::put('barangs/{barang}', [BarangController::class, 'update']);
 Route::delete('barangs/{barang}', [BarangController::class, 'destroy']);
 
+Route::get('penjualans', [PenjualanController::class, 'index']);
+Route::post('penjualans', [PenjualanController::class, 'store']);
+Route::get('penjualans/{penjualan}', [PenjualanController::class, 'show']);
+Route::put('penjualans/{penjualan}', [PenjualanController::class, 'update']);
+Route::delete('penjualans/{penjualan}', [PenjualanController::class, 'destroy']);
 
+Route::get('transaksi', [TransaksiController::class, 'index']);
+Route::post('transaksi', [TransaksiController::class, 'store']);
+Route::get('tarnsaksi/{transaksi}', [TransaksiController::class, 'show']);
+Route::put('transaksi/{transaksi}', [TransaksiController::class, 'update']);
+Route::delete('transaksi/{transaksi}', [TransaksiController::class, 'destroy']);

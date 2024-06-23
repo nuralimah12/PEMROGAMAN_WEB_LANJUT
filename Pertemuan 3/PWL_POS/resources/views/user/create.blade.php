@@ -51,6 +51,19 @@
           </div> 
         </div> 
         <div class="form-group row"> 
+        <label class="col-1 control-label col-form-label">Status</label> 
+        <div class="col-11"> 
+          <select class="form-control" id="status" name="status" required> 
+            <option value="">- Pilih Status -</option> 
+              <option value="0">Belum Tervalidasi</option> 
+              <option value="1">Sudah Tervalidasi</option> 
+          </select> 
+          @error('level_id') 
+            <small class="form-text text-danger">{{ $message }}</small> 
+          @enderror 
+        </div> 
+        </div>
+        {{-- <div class="form-group row"> 
           <label class="col-1 control-label col-form-label">Status</label> 
           <div class="col-11"> 
             <input type="number" class="form-control" id="Status" name="status" value="{{ old('status') }}" required> 
@@ -58,7 +71,7 @@
               <small class="form-text text-danger">{{ $message }}</small> 
             @enderror 
           </div> 
-        </div> 
+        </div>  --}}
         <div class="form-group row"> 
           <label class="col-1 control-label col-form-label">Profil</label> 
           <div class="col-11"> 

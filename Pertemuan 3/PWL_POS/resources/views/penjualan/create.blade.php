@@ -21,7 +21,7 @@
       <div class="form-group row">
         <label class="col-1 control-label col-form-label">Barang</label>
         <div class="col-11">
-          <select class="select2bs4 form-control" name="barang_id[]" multiple="multiple" data-placeholder="Pilih Barang"style="width: 100">
+          <select class="form-control" name="barang_id[]"  data-placeholder="Pilih Barang"style="width: 100">
             <option value="">- Pilih Barang -</option>
             @foreach($barang as $item)
             <option value="{{ $item->barang->barang_id }}" @if(old('barang_id')==$item->barang->barang_id) selected @endif>{{
@@ -57,7 +57,7 @@
         <label class="col-1 control-label col-form-label">Kode Penjualan</label>
         <div class="col-11">
           <input type="text" class="form-control" id="penjualan_kode" name="penjualan_kode"
-            value="{{ old('penjualan_kode') }}" required>
+            value="{{ old('penjualan_kode') }}" readonly>
           @error('penjualan_kode')
           <small class="form-text text-danger">{{ $message }}</small>
           @enderror

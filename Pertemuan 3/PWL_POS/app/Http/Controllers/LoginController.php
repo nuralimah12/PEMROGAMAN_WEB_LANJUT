@@ -17,28 +17,46 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function store(Request $request){
-
-        $success = $request->validate([
+    public function store(Request $request)
+    {
+        $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
         ]);
- 
-        if (Auth::attempt($success)) {
-            $user = UserModel::where('username',$success['username'])->first();
-            if($user->status == 0){
-                return back()->withErrors([
-                    'error' => 'Akun Belum Divalidasi']);
-            }
-            $request->session()->regenerate();
- 
-            return redirect()->route('dashboard');
+    
+        $remember = $request->has('remember');
+    
+        $user = UserModel::where('username', $credentials['username'])->first();
+    
+        if (!$user) {
+            return back()->withErrors([
+                'username' => 'Username salah',
+            ])->onlyInput('username');
         }
- 
-        return back()->withErrors([
-            'username' => 'Username/Password Salah',
-            'password' => 'Username/Password Salah',
-        ])->onlyInput('username');
+    
+        if (!Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password']], $remember)) {
+            return back()->withErrors([
+                'password' => 'Password salah',
+            ])->onlyInput('username');
+        }
+    
+        if ($user->status == 0) {
+            return back()->withErrors([
+                'error' => 'Akun Belum Divalidasi'
+            ]);
+        }
+    
+        if ($remember) {
+            setcookie('username', $credentials['username'], time() + 3600 * 24 * 30); // 30 days
+            setcookie('password', $credentials['password'], time() + 3600 * 24 * 30); // 30 days
+        } else {
+            setcookie('username', '', time() - 3600);
+            setcookie('password', '', time() - 3600);
+        }
+    
+        $request->session()->regenerate();
+    
+        return redirect()->route('dashboard');
     }
 
     public function logout(Request $request): RedirectResponse

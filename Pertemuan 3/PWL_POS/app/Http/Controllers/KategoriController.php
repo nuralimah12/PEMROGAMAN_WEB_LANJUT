@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\KategoriModelDataTable;
 use App\Http\Requests\StoreKategoriRequest;
 use App\Models\KategoriModel;
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
@@ -28,7 +29,7 @@ class KategoriController extends Controller
 
         $kategori = KategoriModel::all();
 
-        return view('kategori.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
+        return view('kategori.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu,'unvalidateUser' => UserModel::where('status', false)->get()]);
     }
 
     public function list(Request $request)
@@ -72,7 +73,8 @@ class KategoriController extends Controller
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'kategori' => $kategori,
-            'activeMenu' => $activeMenu
+            'activeMenu' => $activeMenu,
+            'unvalidateUser' => UserModel::where('status', false)->get()
         ]);
     }
 
@@ -106,7 +108,7 @@ class KategoriController extends Controller
 
         $activeMenu = 'kategori';
 
-        return view('kategori.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
+        return view('kategori.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu,'unvalidateUser' => UserModel::where('status', false)->get()]);
     }
 
     public function update(Request $request, string $id)
@@ -139,7 +141,7 @@ class KategoriController extends Controller
 
         $activeMenu = 'kategori';
 
-        return view('kategori.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
+        return view('kategori.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu, 'unvalidateUser' => userModel::where('status', false)->get()]);
     }
 
     public function destroy(string $id)

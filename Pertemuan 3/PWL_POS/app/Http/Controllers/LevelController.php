@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\LevelDataTable;
 use App\Models\LevelModel;
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -48,7 +49,7 @@ class LevelController extends Controller
 
         $level = LevelModel::all();
 
-        return view('level.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
+        return view('level.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu, 'unvalidateUser' => UserModel::where('status', false)->get(),]);
     }
 
     public function create()
@@ -70,7 +71,8 @@ class LevelController extends Controller
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'level' => $level,
-            'activeMenu' => $activeMenu
+            'activeMenu' => $activeMenu,
+            'unvalidateUser' => userModel::where('status', false)->get(),
         ]);
     }
 
@@ -104,7 +106,7 @@ class LevelController extends Controller
 
         $activeMenu = 'level';
 
-        return view('level.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
+        return view('level.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu, 'unvalidateUser' => userModel::where('status', false)->get(),]);
     }
 
     public function update(Request $request, string $id)
@@ -137,7 +139,7 @@ class LevelController extends Controller
 
         $activeMenu = 'level'; // set menu yang sedang aktif
 
-        return view('level.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
+        return view('level.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu, 'unvalidateUser' => userModel::where('status', false)->get(),]);
     }
 
     public function destroy(string $id)

@@ -23,12 +23,11 @@
         </div> 
         <a href="{{ url('user') }}" class="btn btn-sm btn-default mt2">Kembali</a> 
       @else 
-        <form method="POST" action="{{ url('/user/'.$user->user_id) }}" enctype="multipart/form-data" class="form-horizontal"> 
+        <form method="POST" action="{{ url('member/'.$user->user_id) }}" enctype="multipart/form-data" class="form-horizontal"> 
 
 @csrf 
           {!! method_field('PUT') !!}  <!-- tambahkan baris ini untuk proses edit yang butuh method PUT --> 
-          @if (auth()->user()->level->level_nama != 'Member')
-          <div class="form-group row"> 
+          {{-- <div class="form-group row"> 
             <label class="col-1 control-label col-form-label">Level</label> 
             <div class="col-11"> 
               <select class="form-control" id="level_id" name="level_id" required> 
@@ -41,24 +40,7 @@
                 <small class="form-text text-danger">{{ $message }}</small> 
               @enderror 
             </div> 
-          </div> 
-          @endif
-          @if (auth()->user()->level->level_nama == 'Member')
-          <div class="form-group row"> 
-            <label class="col-1 control-label col-form-label">Level</label> 
-            <div class="col-11">                                                  
-              <select class="form-control" id="level_id" name="level_id" disabled> 
-                <option value="" readonly>- Pilih Level -</option> 
-                @foreach($level as $item) 
-                  <option value="{{ $item->level_id }}" @if($item->level_id == $user->level_id) selected @endif>{{ $item->level_nama }}</option> 
-                @endforeach  q
-              </select> 
-              @error('level_id') 
-                <small class="form-text text-danger">{{ $message }}</small> 
-              @enderror 
-            </div> 
-          </div> 
-          @endif
+          </div>  --}}
           <div class="form-group row"> 
             <label class="col-1 control-label col-form-label">Username</label> 
             <div class="col-11"> 
@@ -77,20 +59,6 @@
               @enderror 
             </div> 
           </div> 
-          @if (auth()->user()->level->level_nama != 'Member')
-          <div class="form-group row"> 
-            <label class="col-1 control-label col-form-label">Status</label> 
-            <div class="col-11"> 
-              <select class="form-control" id="status" name="status" required> 
-                <option value="">- Pilih Status -</option> 
-                  <option value="0">Belum Tervalidasi</option> 
-                  <option value="1">Sudah Tervalidasi</option> 
-              </select> 
-              @error('level_id') 
-                <small class="form-text text-danger">{{ $message }}</small> 
-              @enderror 
-            </div> 
-          </div>
           {{-- <div class="form-group row"> 
             <label class="col-1 control-label col-form-label">Status</label> 
             <div class="col-11"> 
@@ -99,19 +67,7 @@
                 <small class="form-text text-danger">{{ $message }}</small> 
               @enderror 
             </div> 
-          </div>  --}}
-          @endif
-          @if (auth()->user()->level->level_nama == 'Member')
-          <div class="form-group row"> 
-            <label class="col-1 control-label col-form-label">Status</label> 
-            <div class="col-11"> 
-              <input type="number" class="form-control" id="status" name="status" value="{{ old('status', $user->status) }}" readonly> 
-              @error('nama') 
-                <small class="form-text text-danger">{{ $message }}</small> 
-              @enderror 
-            </div> 
-          </div> 
-          @endif
+          </div> --}}
           <div class="form-group row"> 
             <label class="col-1 control-label col-form-label">Profil</label> 
             <div class="col-11"> 
@@ -136,7 +92,7 @@
             <label class="col-1 control-label col-form-label"></label> 
             <div class="col-11"> 
               <button type="submit" class="btn btn-primary btn-sm">Simpan</button> 
-              <a class="btn btn-sm btn-default ml-1" href="{{ url('user') }}">Kembali</a> 
+              <a class="btn btn-sm btn-default ml-1" href="{{ url('member') }}">Kembali</a> 
             </div> 
           </div> 
         </form> 

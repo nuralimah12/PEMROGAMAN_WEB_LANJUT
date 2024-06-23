@@ -29,7 +29,7 @@ class UserModel extends Authenticatable implements JWTSubject
      * 
      * @var array
      */
-    protected $fillable = ['level_id','username','nama','password', 'status', 'profile_img','image'];
+    protected $fillable = ['level_id','username','nama','password', 'status', 'profil_img'];
 
     public function level(): BelongsTo{
         return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
@@ -40,18 +40,19 @@ class UserModel extends Authenticatable implements JWTSubject
     // }
 
     protected $hidden = [
-        'password'
+        'password',
+        'remember_token'
     ];
 
     protected $casts = [
         'password' => 'hashed',
     ];
 
-    protected function image(): Attribute
-    { 
-        return Attribute::make( 
-            get: fn ($image) => url('/storage/posts/' . $image), 
-        ); 
-    } 
+    // protected function image(): Attribute
+    // { 
+    //     return Attribute::make( 
+    //         get: fn ($image) => url('/storage/posts/' . $image), 
+    //     ); 
+    // } 
 
 }

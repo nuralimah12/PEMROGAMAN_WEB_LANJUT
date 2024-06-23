@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,7 +19,8 @@ class PenjualanModel extends Model
         'user_id', 
         'pembeli', 
         'penjualan_kode', 
-        'penjualan_tanggal', 
+        'penjualan_tanggal',
+        'image' 
     ];
 
     public function user(): BelongsTo
@@ -29,4 +31,11 @@ class PenjualanModel extends Model
     protected $casts = [
         'penjualan_tanggal'  => 'date:d-m-Y',
     ];
+
+    protected function image(): Attribute
+    { 
+        return Attribute::make( 
+            get: fn ($image) => url('/storage/posts/' . $image), 
+        ); 
+    }
 }

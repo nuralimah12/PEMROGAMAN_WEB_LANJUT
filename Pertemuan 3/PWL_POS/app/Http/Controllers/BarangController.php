@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BarangModel;
 use App\Models\KategoriModel;
+use App\Models\UserModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -31,7 +33,8 @@ class BarangController extends Controller
         'breadcrumb' => $breadcrumb, 
         'page' => $page, 
         'kategori' => $kategori, 
-        'activeMenu' => $activeMenu
+        'activeMenu' => $activeMenu,
+        'unvalidateUser' => UserModel::where('status', false)->get()
         ]);
     }
 
@@ -83,7 +86,8 @@ class BarangController extends Controller
         'breadcrumb' => $breadcrumb, 
         'page' => $page, 
         'kategori' => $kategori, 
-        'activeMenu' => $activeMenu
+        'activeMenu' => $activeMenu,
+        'unvalidateUser' => UserModel::where('status', false)->get()
         ]);
     }
 
@@ -92,15 +96,35 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kategori_id' => 'required|integer',
-            'barang_kode' => 'required|string|min:3|unique:m_barang,barang_kode',
-            'barang_nama' => 'required|string|max:100',
-            'harga_beli' => 'required|numeric',
-            'harga_jual' => 'required|numeric',
+        $this->validate($request, [
+            'kategori_id' => 'required',
+            'barang_nama' => 'required',
+            'harga_beli' => 'required|numeric|min:0',
+            'harga_jual' => 'required|numeric|min:0',
         ]);
 
-        BarangModel::create($request->all());
+        if ($request->harga_jual < $request->harga_beli) {
+            return redirect()->back()->withErrors(['harga_jual' => 'Harga jual tidak boleh kurang dari harga beli'])->withInput();
+        }
+    
+        // Ambil kode kategori
+        $kategori = KategoriModel::find($request->kategori_id);
+        $kategoriKode = $kategori->kategori_kode; // Pastikan ada field kategori_kode di tabel kategori
+    
+        // Hitung jumlah barang yang ada di kategori tersebut
+        $barangCount = BarangModel::where('kategori_id', $request->kategori_id)->count() + 1;
+    
+        // Buat kode barang otomatis
+        $kodeBarang = $kategoriKode . str_pad($barangCount, 3, '0', STR_PAD_LEFT) . date('dmy');
+    
+        // Simpan barang
+        $barang = new BarangModel();
+        $barang->kategori_id = $request->kategori_id;
+        $barang->barang_kode = $kodeBarang;
+        $barang->barang_nama = $request->barang_nama;
+        $barang->harga_beli = $request->harga_beli;
+        $barang->harga_jual = $request->harga_jual;
+        $barang->save();
 
         return redirect('/barang')->with('success', 'Data barang berhasil disimpan');
     }
@@ -127,7 +151,8 @@ class BarangController extends Controller
             'breadcrumb' => $breadcrumb, 
             'page' => $page,
             'barang' => $barang,
-            'activeMenu' => $activeMenu
+            'activeMenu' => $activeMenu,
+            'unvalidateUser' => UserModel::where('status', false)->get()
         ]);
     }
 
@@ -156,7 +181,8 @@ class BarangController extends Controller
             'page' => $page,
             'barang' => $barang,
             'kategori' => $kategori,
-            'activeMenu' => $activeMenu
+            'activeMenu' => $activeMenu,
+            'unvalidateUser' => UserModel::where('status', false)->get()
         ]);
     }
 
@@ -167,13 +193,34 @@ class BarangController extends Controller
     {
         $request->validate([
             'kategori_id' => 'required|integer',
-            'barang_kode' => 'required|string|min:3|unique:m_barang,barang_kode,'.$id.',barang_id',
             'barang_nama' => 'required|string|max:100',
             'harga_beli' => 'required|numeric',
             'harga_jual' => 'required|numeric',
+            'image' => 'nullable|image|mimes:png,jpg',
         ]);
 
-        BarangModel::find($id)->update($request->all());
+        if ($request->harga_jual < $request->harga_beli) {
+            return redirect()->back()->withErrors(['harga_jual' => 'Harga jual tidak boleh kurang dari harga beli'])->withInput();
+        }
+
+        // Ambil kode kategori
+        $kategori = KategoriModel::find($request->kategori_id);
+        $kategoriKode = $kategori->kategori_kode; // Pastikan ada field kategori_kode di tabel kategori
+
+        // Hitung jumlah barang yang ada di kategori tersebut
+        $barangCount = BarangModel::where('kategori_id', $request->kategori_id)->count();
+
+        // Buat kode barang otomatis
+        $kodeBarang = $kategoriKode . str_pad($barangCount, 3, '0', STR_PAD_LEFT) . date('dmy');
+
+        $barang = BarangModel::find($id);
+        $barang->update([
+            'kategori_id' => $request->kategori_id,
+            'barang_kode' => $kodeBarang,
+            'barang_nama' => $request->barang_nama,
+            'harga_beli' => $request->harga_beli,
+            'harga_jual' => $request->harga_jual,
+        ]);
 
         return redirect('/barang')->with('success', 'Data barang berhasil diubah');
     }
